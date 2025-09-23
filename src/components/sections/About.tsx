@@ -1,32 +1,56 @@
 // File: app/components/sections/About.tsx
+import { Lightbulb, Eye, HeartHandshake } from "lucide-react";
+
 export default function About() {
   return (
-    <section id="about" className="py-16">
-      <div className="max-w-4xl">
-        <h3 className="text-2xl font-semibold">About Sinneo Group</h3>
-        <p className="mt-4 text-gray-600">
-          Sinneo Group is a modern conglomerate that builds, invests in, and operates businesses that solve practical problems. We combine product thinking, technology, and operational know-how to help companies and communities thrive.
+    <section id="about" className="py-20">
+      <div className="max-w-5xl mx-auto text-center">
+        {/* Section Heading */}
+        <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          About Sinneo Group
+        </h3>
+        <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
+          Sinneo Group is a modern conglomerate that builds, invests in, and
+          operates businesses solving practical problems across industries. We
+          bring together product thinking, technology, and operational
+          expertise to help companies and communities thrive in a digital-first
+          world.
         </p>
+      </div>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-4 bg-white rounded-lg shadow-sm">
-            <h4 className="font-semibold">Mission</h4>
-            <p className="mt-2 text-sm text-gray-600">
-              Create scalable ventures that deliver measurable economic and social impact.
-            </p>
+      {/* Mission / Vision / Values */}
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="p-6 rounded-xl bg-white shadow-md hover:shadow-lg transition">
+          <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 text-white">
+            <Lightbulb size={24} />
           </div>
-          <div className="p-4 bg-white rounded-lg shadow-sm">
-            <h4 className="font-semibold">Vision</h4>
-            <p className="mt-2 text-sm text-gray-600">
-              Be the trusted partner for African businesses embracing digital transformation.
-            </p>
+          <h4 className="mt-4 font-semibold text-lg text-gray-900">Mission</h4>
+          <p className="mt-2 text-sm text-gray-600">
+            Create scalable ventures that deliver measurable economic and
+            social impact across Africa and beyond.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-xl bg-white shadow-md hover:shadow-lg transition">
+          <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-indigo-500 text-white">
+            <Eye size={24} />
           </div>
-          <div className="p-4 bg-white rounded-lg shadow-sm">
-            <h4 className="font-semibold">Values</h4>
-            <p className="mt-2 text-sm text-gray-600">
-              Integrity, clarity, long-term focus, and technology-forward thinking.
-            </p>
+          <h4 className="mt-4 font-semibold text-lg text-gray-900">Vision</h4>
+          <p className="mt-2 text-sm text-gray-600">
+            Be the trusted partner for businesses embracing digital
+            transformation and future-ready solutions.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-xl bg-white shadow-md hover:shadow-lg transition">
+          <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-indigo-500 text-white">
+            <HeartHandshake size={24} />
           </div>
+          <h4 className="mt-4 font-semibold text-lg text-gray-900">Values</h4>
+          <p className="mt-2 text-sm text-gray-600">
+            Integrity, clarity, long-term focus, and a commitment to
+            technology-forward thinking.
+          </p>
         </div>
       </div>
     </section>
