@@ -1,4 +1,5 @@
 // app/layout.tsx
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -16,7 +17,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-// Metadata
 export const metadata: Metadata = {
   title: "Sinneo Group",
   description: "Building ventures that transform business",
@@ -32,11 +32,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900`}
       >
-        <div className="max-w-7xl mx-auto px-6">
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

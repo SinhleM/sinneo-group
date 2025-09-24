@@ -2,75 +2,59 @@
 
 import { motion } from "framer-motion";
 
-export default function Hero() {
+interface HeroProps {
+  backgroundImage: string;
+}
+
+export default function Hero({ backgroundImage }: HeroProps) {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-20"
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="relative w-full min-h-screen grid grid-cols-1 md:grid-cols-2 items-center overflow-hidden"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      {/* Left: Text */}
-      <div>
-        <p className="text-sm font-medium text-indigo-600">
-          Trusted by ambitious businesses
-        </p>
-        <h2 className="mt-4 text-4xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-indigo-600 via-purple-600 to-sky-500 bg-clip-text text-transparent">
-          Sinneo Group, building future-ready ventures that scale
-        </h2>
-        <p className="mt-6 text-gray-600 max-w-xl">
-          We launch and operate companies that solve real problems, from
-          AI-driven data products to logistics optimization. Our group model
-          combines consulting, product delivery, and operational excellence to
-          create measurable value for clients and partners.
+      {/* Overlay for subtle darkening */}
+      <div className="absolute inset-0 bg-black/50 z-0" />
+
+      {/* Text Section */}
+      <div className="relative z-10 px-6 md:px-16 max-w-2xl">
+        <p className="text-sm font-semibold text-white/80 mb-4">Sinneo Solutions</p>
+
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+          Building ventures that solve real business problems
+        </h1>
+
+        <p className="mt-6 text-lg text-white/80">
+          From AI-powered platforms to logistics optimization — we deliver full-scale innovation tailored for the modern enterprise.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="mt-8 flex gap-4">
+        {/* CTA */}
+        <div className="mt-8">
           <a
             href="#contact"
-            className="inline-block rounded-md px-6 py-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-sky-500 text-white font-medium shadow-md hover:scale-105 transition"
+            className="inline-block rounded-md bg-white text-black px-6 py-3 text-base font-semibold shadow hover:bg-gray-100 transition"
           >
-            Work with us
+            Get in touch
           </a>
-          <a
-            href="#divisions"
-            className="inline-block rounded-md px-6 py-3 border border-indigo-200 text-gray-700 hover:border-indigo-400 hover:text-indigo-600 transition"
-          >
-            Explore divisions
-          </a>
-        </div>
-
-        {/* Microcopy */}
-        <div className="mt-8 text-xs text-gray-500">
-          Backed by Sinneo Group — Virzurely, Sinneo Logistics, Sinneo Consulting
         </div>
       </div>
 
-      {/* Right: Visual / Mockup */}
-      <div className="relative">
-        <div className="rounded-2xl bg-white shadow-xl p-6 relative z-10">
-          <h3 className="text-lg font-semibold text-gray-900">
-            Future-ready solutions
-          </h3>
-          <p className="mt-2 text-sm text-gray-500">
-            AI-powered insights, automation, and global strategy designed for
-            SMEs and enterprises.
-          </p>
-          <div className="mt-4 flex gap-6 text-sm text-gray-700">
-            <div>
-              <span className="block text-xl font-bold text-indigo-600">50+</span>
-              Clients served
-            </div>
-            <div>
-              <span className="block text-xl font-bold text-purple-600">3</span>
-              Active divisions
-            </div>
-          </div>
+      {/* Image Mockup */}
+      <div className="relative z-10 hidden md:block px-6 md:px-10 lg:px-20">
+        <div className="w-full max-w-md mx-auto shadow-2xl rounded-xl overflow-hidden">
+          <img
+            src="/mockup.png" // You can replace this with your actual visual or screenshot
+            alt="Dashboard preview"
+            className="w-full h-auto object-cover"
+          />
         </div>
-
-        {/* Gradient orb background */}
-        <div className="absolute -right-12 -bottom-12 w-56 h-56 rounded-full bg-gradient-to-br from-indigo-200 via-purple-200 to-sky-100 opacity-70 blur-2xl" />
       </div>
     </motion.section>
   );
