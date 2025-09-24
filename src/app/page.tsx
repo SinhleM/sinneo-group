@@ -16,8 +16,6 @@ export default function LandingPage() {
       <About />
       <Divisions />
       <Impact />
-      <News />
-      <Leadership />
       <Contact />
     </>
   );
