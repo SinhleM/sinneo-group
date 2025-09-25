@@ -1,5 +1,4 @@
 import DivisionCard from "@/components/ui/DivisionCard";
-import { Briefcase, LineChart, Truck } from "lucide-react";
 
 export default function Divisions() {
   return (
@@ -16,24 +15,28 @@ export default function Divisions() {
       </div>
 
       {/* Cards stacked vertically with horizontal margin */}
-        <div className="mt-12 flex flex-col gap-6 max-w-5xl mx-auto">
+      <div className="mt-12 flex flex-col gap-6 max-w-5xl mx-auto">
+        {/* Sinneo Consulting Card */}
         <DivisionCard
-          icon={<Briefcase className="h-6 w-6 text-blue-600" />}
+          imageSrc="/consulting.jpg"
           title="Sinneo Consulting"
           desc="AI-enabled business transformation, workflows, and automation for SMEs."
           align="left"
           learnMore
         />
+
+        {/* Vizurely Card - Image on RIGHT, Text on LEFT */}
         <DivisionCard
-          icon={<LineChart className="h-6 w-6 text-blue-600" />}
-          title="Virzurely"
+          imageSrc="/vizurely.png"
+          title="Vizurely"
           desc="Lightweight, plug-and-play BI, reporting, and data automation for SMEs."
-          highlight
-          align="left"
+          align="right" // <-- This is the key change
           learnMore
         />
+
+        {/* Sinneo Logistics Card */}
         <DivisionCard
-          icon={<Truck className="h-6 w-6 text-blue-600" />}
+          imageSrc="/logistics.jpg"
           title="Sinneo Logistics"
           desc="Route planning, fleet optimization, and logistic tech solutions to improve margins."
           align="left"
