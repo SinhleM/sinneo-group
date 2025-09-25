@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Mail, Phone, MapPin, Linkedin, Twitter } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,13 +10,11 @@ export default function Contact() {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle, sending, success, error
 
-  // Simple email regex validation
-  const validateEmail = (email) =>
+  const validateEmail = (email: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  // Validate inputs
   const validate = () => {
-    const newErrors = {};
+    const newErrors: any = {};
     if (!formData.name.trim()) newErrors.name = "Name is required.";
     if (!formData.email.trim()) newErrors.email = "Email is required.";
     else if (!validateEmail(formData.email))
@@ -25,12 +24,12 @@ export default function Contact() {
     return newErrors;
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     setErrors((prev) => ({ ...prev, [e.target.name]: null }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -39,10 +38,7 @@ export default function Contact() {
     }
 
     setStatus("sending");
-
-    // Simulate async form submission
     setTimeout(() => {
-      // Replace with actual form submission logic/API integration here
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
     }, 1500);
@@ -51,21 +47,56 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-b from-gray-50 to-white border-t border-gray-100"
+      className="relative py-20 bg-gray-50"
     >
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-          Let’s Work <span className="text-blue-600">Together</span>
-        </h3>
-        <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-          Have a project in mind or want to learn more about{" "}
-          <span className="font-semibold text-gray-800">Sinneo Group</span> and{" "}
-          <span className="font-semibold text-gray-800">Virzurely</span>? Send us a
-          message and we’ll get back to you soon.
-        </p>
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 opacity-10 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80')", // Replace with HQ image or map
+        }}
+      ></div>
+      <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        {/* Left Side: Info */}
+        <div className="flex flex-col justify-center space-y-6">
+          <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900">
+            Let’s Work <span className="text-blue-600">Together</span>
+          </h3>
+          <p className="text-lg text-gray-600">
+            Have a project in mind or want to learn more about{" "}
+            <span className="font-semibold text-gray-800">Sinneo Group</span>? 
+            Start the conversation and we’ll be in touch soon.
+          </p>
 
-        {/* Contact Form */}
-        <div className="mt-10 p-8 rounded-2xl bg-white shadow-md border border-gray-100 text-left">
+          <div className="space-y-4 text-gray-700">
+            <p className="flex items-center gap-2">
+              <Mail className="h-5 w-5 text-blue-600" />
+              contact@sinneo.com
+            </p>
+            <p className="flex items-center gap-2">
+              <Phone className="h-5 w-5 text-blue-600" />
+              +27 11 123 4567
+            </p>
+            <p className="flex items-center gap-2">
+              <MapPin className="h-5 w-5 text-blue-600" />
+              Johannesburg, South Africa
+            </p>
+          </div>
+
+          <div className="flex gap-4 mt-4">
+            <a href="#" className="text-gray-500 hover:text-blue-600">
+              <Linkedin className="h-6 w-6" />
+            </a>
+            <a href="#" className="text-gray-500 hover:text-blue-600">
+              <Twitter className="h-6 w-6" />
+            </a>
+          </div>
+        </div>
+
+        {/* Right Side: Form */}
+        <div className="p-8 rounded-2xl bg-white shadow-md border border-gray-100">
           {status === "success" ? (
             <div className="text-green-600 font-semibold text-center text-lg">
               Thank you for your message! We’ll get back to you shortly.
@@ -79,21 +110,12 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your name"
-                  autoComplete="name"
                   className={`w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     errors.name ? "border-red-500" : "border-gray-300"
                   }`}
-                  aria-invalid={errors.name ? "true" : "false"}
-                  aria-describedby="name-error"
                 />
                 {errors.name && (
-                  <p
-                    id="name-error"
-                    className="text-red-600 text-sm mt-1"
-                    role="alert"
-                  >
-                    {errors.name}
-                  </p>
+                  <p className="text-red-600 text-sm mt-1">{errors.name}</p>
                 )}
               </div>
 
@@ -104,21 +126,12 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@example.com"
-                  autoComplete="email"
                   className={`w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     errors.email ? "border-red-500" : "border-gray-300"
                   }`}
-                  aria-invalid={errors.email ? "true" : "false"}
-                  aria-describedby="email-error"
                 />
                 {errors.email && (
-                  <p
-                    id="email-error"
-                    className="text-red-600 text-sm mt-1"
-                    role="alert"
-                  >
-                    {errors.email}
-                  </p>
+                  <p className="text-red-600 text-sm mt-1">{errors.email}</p>
                 )}
               </div>
 
@@ -132,17 +145,9 @@ export default function Contact() {
                   className={`w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     errors.message ? "border-red-500" : "border-gray-300"
                   }`}
-                  aria-invalid={errors.message ? "true" : "false"}
-                  aria-describedby="message-error"
                 />
                 {errors.message && (
-                  <p
-                    id="message-error"
-                    className="text-red-600 text-sm mt-1"
-                    role="alert"
-                  >
-                    {errors.message}
-                  </p>
+                  <p className="text-red-600 text-sm mt-1">{errors.message}</p>
                 )}
               </div>
 
@@ -151,44 +156,10 @@ export default function Contact() {
                 disabled={status === "sending"}
                 className="w-full py-3 px-6 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition disabled:opacity-50"
               >
-                {status === "sending" ? "Sending..." : "Send Message"}
+                {status === "sending" ? "Sending..." : "Start the Conversation"}
               </button>
             </form>
           )}
-
-          {/* Trust Signals */}
-          <div className="mt-8 text-sm text-gray-500 space-y-2">
-            <p>We typically respond within 24 hours.</p>
-            <p>Your information stays private and secure.</p>
-            <p>
-              Prefer to schedule a meeting?{" "}
-              <a
-                href="https://calendly.com/your-calendar" // Replace with your actual Calendly link
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline"
-              >
-                Book a time here
-              </a>
-              .
-            </p>
-            <p>
-              Or email us directly at{" "}
-              <a
-                href="mailto:contact@sinneo.com"
-                className="text-blue-600 underline"
-              >
-                contact@sinneo.com
-              </a>
-              .
-            </p>
-          </div>
-
-          {/* Privacy Disclaimer */}
-          <p className="mt-6 text-xs text-gray-400 italic">
-            By submitting this form, you agree to our privacy policy and terms of
-            service.
-          </p>
         </div>
       </div>
     </section>

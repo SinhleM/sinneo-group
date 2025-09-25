@@ -1,4 +1,3 @@
-// File: app/page.tsx
 'use client';
 
 import Hero from '@/components/sections/Hero';
@@ -12,7 +11,7 @@ import Contact from '@/components/sections/Contact';
 export default function LandingPage() {
   return (
     <>
-      <Hero backgroundImage="/Gemini_Generated_Image_wrj8fowrj8fowrj8.png" />
+      <Hero backgroundImage="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80" />
       <About />
       <Divisions />
       <Impact />
