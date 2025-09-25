@@ -1,4 +1,7 @@
-import NextImage from "next/image";
+'use client';
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface DivisionCardProps {
@@ -18,6 +21,14 @@ export default function DivisionCard({
   highlight = false,
   learnMore = false,
 }: DivisionCardProps) {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) return null; // Prevent mismatched hydration
+
   const isLeftAligned = align === "left";
 
   return (
@@ -26,27 +37,25 @@ export default function DivisionCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5 }}
-      // Main card container with no internal padding, just border radius and shadow
       className={`relative w-full rounded-3xl shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden
-        ${highlight ? "bg-blue-600 text-white" : "bg-white text-black"}`
-      }
+        ${highlight ? "bg-blue-600 text-white" : "bg-white text-black"}`}
     >
       <div
-        // This inner div acts as the content wrapper, applying padding to text and controlling flex order
         className={`flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16
           ${isLeftAligned ? "md:flex-row" : "md:flex-row-reverse"}`}
       >
-        {/* Image Block: Now truly full-bleed within its flex column */}
+        {/* Image Block */}
         <div className="relative w-full md:w-1/2 h-64 overflow-hidden">
-          <NextImage
+          <Image
             src={imageSrc}
             alt={title}
             layout="fill"
             objectFit="cover"
+            priority
           />
         </div>
-        
-        {/* Text Content Block */}
+
+        {/* Text Content */}
         <div className={`flex flex-col gap-4 w-full md:w-1/2 p-8 ${isLeftAligned ? "text-left" : "text-right"}`}>
           <h4 className="text-3xl font-bold">{title}</h4>
           <p className="text-lg">{desc}</p>
@@ -55,8 +64,7 @@ export default function DivisionCard({
               <a
                 href="#"
                 className={`inline-flex items-center gap-2 font-medium transition-colors
-                  ${highlight ? "text-white hover:text-gray-200" : "text-blue-600 hover:text-blue-800"}`
-                }
+                  ${highlight ? "text-white hover:text-gray-200" : "text-blue-600 hover:text-blue-800"}`}
               >
                 Learn More
                 <svg

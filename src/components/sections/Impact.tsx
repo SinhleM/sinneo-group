@@ -37,7 +37,7 @@ export default function Impact() {
         <div className="flex-1 relative">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200">
             <Image
-              src="/images/impact-illustration.jpg" // replace with your actual image path
+              src="/inovation.jpg" // replace with your actual image path
               alt="Innovation & Impact illustration"
               width={600}
               height={400}
