@@ -17,8 +17,9 @@
     var(--brand-secondary)
   );
 
-  --font-sans: var(--font-geist-sans, ui-sans-serif, system-ui);
-  --font-mono: var(--font-geist-mono, ui-monospace, monospace);
+  /* Font variable (points to the Lato font loaded by Next.js) */
+  --font-sans: var(--font-lato, ui-sans-serif, system-ui);
+  --font-mono: ui-monospace, monospace;
 }
 
 /* Dark mode */
@@ -36,7 +37,8 @@
 @layer base {
   body {
     @apply antialiased bg-[var(--background)] text-[var(--foreground)];
-    font-family: var(--font-sans);
+    /* Corrected syntax from "fontFamily" to "font-family" */
+    font-family: var(--font-sans); 
     line-height: 1.6;
   }
 

@@ -18,9 +18,9 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".", // required
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"] // Corrected for a src folder
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

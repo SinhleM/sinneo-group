@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 interface HeroProps {
-  backgroundImage: string;
+  backgroundImage: string; // This prop will now expect a lighter background image
 }
 
 export default function Hero({ backgroundImage }: HeroProps) {
@@ -20,18 +20,24 @@ export default function Hero({ backgroundImage }: HeroProps) {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Overlay for subtle darkening */}
-      <div className="absolute inset-0 bg-black/50 z-0" />
+      {/* Overlay - now lighter for a white background, or remove if not needed.
+          A subtle gradient might also work here to guide the eye.
+          Let's try a very subtle darkening or a light gradient to push text forward. */}
+      {/* For a white background, a very subtle dark overlay or even a light radial gradient
+          from transparent to white at the edges could work to focus on text.
+          Let's try a very light black overlay or just remove it if the image is clear enough.
+          For now, I'll reduce the intensity significantly. */}
+      <div className="absolute inset-0 bg-black/10 z-0" /> {/* Much lighter overlay */}
 
       {/* Text Section */}
-      <div className="relative z-10 px-6 md:px-16 max-w-2xl">
-        <p className="text-sm font-semibold text-white/80 mb-4">Sinneo Solutions</p>
+      <div className="relative z-10 px-6 md:px-16 max-w-2xl py-20 md:py-0"> {/* Added vertical padding for smaller screens */}
+        <p className="text-sm font-semibold text-gray-600 mb-4">Sinneo Solutions</p> {/* Changed to dark grey */}
 
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-950 leading-tight"> {/* Changed to dark grey */}
           Building ventures that solve real business problems
         </h1>
 
-        <p className="mt-6 text-lg text-white/80">
+        <p className="mt-6 text-lg text-gray-700"> {/* Changed to dark grey */}
           From AI-powered platforms to logistics optimization — we deliver full-scale innovation tailored for the modern enterprise.
         </p>
 
@@ -39,23 +45,13 @@ export default function Hero({ backgroundImage }: HeroProps) {
         <div className="mt-8">
           <a
             href="#contact"
-            className="inline-block rounded-md bg-white text-black px-6 py-3 text-base font-semibold shadow hover:bg-gray-100 transition"
+            className="inline-block rounded-md bg-white text-gray-950 px-6 py-3 text-base font-semibold shadow hover:bg-gray-100 transition"
           >
             Get in touch
           </a>
         </div>
       </div>
 
-      {/* Image Mockup */}
-      <div className="relative z-10 hidden md:block px-6 md:px-10 lg:px-20">
-        <div className="w-full max-w-md mx-auto shadow-2xl rounded-xl overflow-hidden">
-          <img
-            src="/mockup.png" // You can replace this with your actual visual or screenshot
-            alt="Dashboard preview"
-            className="w-full h-auto object-cover"
-          />
-        </div>
-      </div>
     </motion.section>
   );
 }

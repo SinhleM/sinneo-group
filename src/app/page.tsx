@@ -12,7 +12,7 @@ import Contact from '@/components/sections/Contact';
 export default function LandingPage() {
   return (
     <>
-      <Hero backgroundImage="/bg3.jpg" />
+      <Hero backgroundImage="/Gemini_Generated_Image_wrj8fowrj8fowrj8.png" />
       <About />
       <Divisions />
       <Impact />
