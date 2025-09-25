@@ -37,8 +37,8 @@ export default function Hero({ backgroundImage }: HeroProps) {
           Building ventures that solve real business problems
         </h1>
 
-        <p className="mt-6 text-lg text-gray-700"> {/* Changed to dark grey */}
-          From AI-powered platforms to logistics optimization — we deliver full-scale innovation tailored for the modern enterprise.
+        <p className="mt-6 text-lg text-gray-800"> {/* Changed to dark grey */}
+          From AI-powered platforms to logistics optimization, we deliver full-scale innovation tailored for the modern enterprises.
         </p>
 
         {/* CTA */}
